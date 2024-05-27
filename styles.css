@@ -1,0 +1,162 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1, h2, h3 {
+    color: #003366;
+}
+
+h1 {
+    margin-bottom: 5px;
+}
+
+.subheading {
+    font-size: smaller;
+    margin-top: 0;
+}
+
+#controls {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#controls button {
+    font-size: 16px;
+    padding: 8px 16px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    background-color: #f0f0f0;
+    transition: background-color 0.3s;
+}
+
+#controls button:hover {
+    background-color: #e0e0e0;
+}
+
+.prefix {
+    font-weight: bold;
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+.green {
+    color: #006633;
+}
+
+.blue {
+    color: #003366;
+}
+
+
+.pdf-logo {
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background-color: #006633;
+    color: white;
+    text-align: center;
+}
+
+th:first-child {
+    text-align: right;
+}
+
+tfoot th {
+    font-weight: bold;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+td:first-child {
+    text-align: right;
+}
+
+td:not(:first-child) {
+    text-align: center;
+}
+
+input[type="number"] {
+    width: 50px;
+    text-align: center;
+}
+
+input::placeholder {
+    color: #cccccc;
+}
+
+#statistics {
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid #003366;
+    background-color: #fbf1c7;
+    display: flex;
+    justify-content: space-around;
+    font-size: 18px;
+    color: #003366;
+    font-weight: bold;
+}
+
+.stat {
+    margin-right: 20px;
+}
+
+a {
+    color: #1e90ff; /* Light blue color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.footer-links {
+    margin-bottom: 5px;
+}
+
+.footer-small {
+    font-size: 12px;
+    display: block;
+    margin-top: 5px;
+}
+
+footer a {
+    color: #1e90ff;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}

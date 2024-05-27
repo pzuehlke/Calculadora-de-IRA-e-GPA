@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IRA e GPA</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                renderActions: {
+                    findScript: [10, (doc) => {
+                        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                            const display = !!node.type.match(/; *mode=display/);
+                            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                            const text = document.createTextNode('');
+                            node.parentNode.replaceChild(text, node);
+                            math.start = {node: text, delim: '', n: 0};
+                            math.end = {node: text, delim: '', n: 0};
+                            doc.math.push(math);
+                        }
+                    }, '']
+                }
+            },
+            chtml: {
+                scale: 1,
+                minScale: .5,
+                mtextInheritFont: true,
+                merrorInheritFont: true,
+                merrorFont: '',
+                mtextFont: '',
+                displayAlign: 'center',
+                displayIndent: '0',
+                mathmlSpacing: false,
+                skipAttributes: {},
+                exFactor: .5,
+                matchFontHeight: true
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Calculadora de IRA e GPA para a UnB (não-oficial)</h1>
+
+    <table id="semesterTable">
+        <thead>
+            <tr>
+                <th style="text-align: right;">Período</th>
+                <th>SS</th>
+                <th>MS</th>
+                <th>MM</th>
+                <th>MI</th>
+                <th>II</th>
+                <th>SR</th>
+                <th>Créditos</th>
+            </tr>
+        </thead>
+        <tbody id="semesterBody">
+            <!-- Period rows will be added here dynamically -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <th style="text-align: right;">Total</th>
+                <th id="total-ss">0</th>
+                <th id="total-ms">0</th>
+                <th id="total-mm">0</th>
+                <th id="total-mi">0</th>
+                <th id="total-ii">0</th>
+                <th id="total-sr">0</th>
+                <th id="total-credits">0</th>
+            </tr>
+        </tfoot>
+    </table>
+
+    <div id="controls">
+        <button id="addSemester"><span class="prefix green">$ \mathbf{+} $</span>Adicionar Período</button>
+        <button id="removeSemester"><span class="prefix blue">$ \mathbf{-} $</span>Remover Período</button>
+        <button id="printPage"><img src="pdf_logo.png" alt="PDF Logo" class="pdf-logo">Salvar como PDF ou Imprimir</button>
+    </div>
+
+    <h3>Estatísticas</h3>
+    <div id="statistics">
+        <div class="stat"><span id="iraLabel">IRA:</span> <span id="iraValue">0.00 / 5.00</span></div>
+        <div class="stat"><span id="gpaLabel">GPA:</span> <span id="gpaValue">0.00 / 4.00</span></div>
+        <div class="stat"><span id="mediaLabel">Média:</span> <span id="mediaValue">0.00 / 10.00</span></div>
+    </div>
+
+    <h3>Instruções</h3>
+    <ul>
+        <li>Para cada período, <em>insira o número de créditos concluídos com o tipo de menção indicado.</em></li>
+        <li>Caso não tenha obtido uma determinada menção num período, deixe a célula correspondente em branco.</li>
+        <li>Menções distintas das indicadas acima (como CC, AP ou TR) devem ser ignoradas.</li>
+        <li>Linhas correspondentes a períodos trancados devem ser deixadas em branco.</li>
+        <li>Se preferir, utilize <code>Tab</code> e <code>Shift+Tab</code> para navegar entre as células usando apenas o teclado.</li>
+    </ul>
+    
+    <footer>
+        <div class="footer-links">
+            <a href="detalhes.html" target="_blank">Detalhes</a> | <a href="termos_de_uso.html" target="_blank">Termos de Uso</a>
+        </div>
+        <div class="footer-small">
+            &copy; 2024 –&nbsp;&nbsp;| Data da última modificação: <span id="lastModified"></span>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById('lastModified').textContent = new Date(document.lastModified).toLocaleDateString();
+    </script>
+</body>
+</html>

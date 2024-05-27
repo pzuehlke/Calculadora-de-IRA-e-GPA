@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']],
+                processEscapes: true,
+                processEnvironments: true
+            },
+            options: {
+                renderActions: {
+                    findScript: [10, (doc) => {
+                        for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                            const display = !!node.type.match(/; *mode=display/);
+                            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                            const text = document.createTextNode('');
+                            node.parentNode.replaceChild(text, node);
+                            math.start = {node: text, delim: '', n: 0};
+                            math.end = {node: text, delim: '', n: 0};
+                            doc.math.push(math);
+                        }
+                    }, '']
+                }
+            },
+            chtml: {
+                scale: 1,
+                minScale: .5,
+                mtextInheritFont: true,
+                merrorInheritFont: true,
+                merrorFont: '',
+                mtextFont: '',
+                displayAlign: 'center',
+                displayIndent: '0',
+                mathmlSpacing: false,
+                skipAttributes: {},
+                exFactor: .5,
+                matchFontHeight: true
+            }
+        };
+    </script>
+</head>
+<body>
+    <h1>Detalhes</h1>
+
+    <div id="observacoes">
+        <ul>
+            <li>
+                Fórmula para o cômputo do IRA: <span id="iraFormula">
+                $$\text{IRA} = \frac{{\Large \sum}\limits_{\substack{\text{período} \\ \text{menção}}} 
+                (\text{peso do período}) \times (\text{peso da menção}) \times 
+                (\text{créditos com esta menção no período})}{{\Large \sum}\limits_{\substack{\text{período}}} 
+                (\text{peso do período}) \times (\text{total de créditos no período})}$$
+                </span>
+            </li>
+            <li>
+                Apesar da diferença aparente, esta fórmula é equivalente àquela em 
+                <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf">[1]</a>, 
+                já que os créditos de disciplinas concluídas com mesma menção no mesmo período podem ser colecionados.
+            </li>
+            <li>
+                Os pesos das menções são: 
+                $ \text{SS} = 5 $, $ \text{MS} = 4 $, $ \text{MM} = 3 $, $ \text{MI} = 2 $, 
+                $ \text{II} = 1 $ e $ \text{SR} = 0 $.
+                Veja <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf">[1]</a>.
+            </li>
+            <li>
+                O peso do $ n $-ésimo período é $ \min(n, 6)$.
+                Veja <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf">[1]</a>.
+            </li>
+            <li>
+                No caso do GPA (Grade Point Average), versão de média geral mais empregada em instituições de ensino americanas, 
+                todos os períodos têm o mesmo peso:
+                <span id="gpaFormula">
+                $$\text{GPA} = \frac{4}{5} \times \frac{{\Large \sum}\limits_{\text{menção}} 
+                (\text{peso da menção}) \times (\text{total de créditos com esta menção})}{
+                \text{total de créditos cursados na graduação}}$$
+                </span>
+            </li>
+            <li>
+                A "média" calculada aqui é simplesmente o GPA numa escala de zero a dez. Portanto, ela é dada por:
+                $$ \text{média comum} = \frac{5}{2} \times \text{GPA} $$
+            </li>
+            <li>
+                Nenhum tipo de trancamento (geral ou parcial, automático ou justificado) tem impacto no IRA. 
+                Esta é uma mudança recente (veja 
+                <a href="https://saa.unb.br/perguntas-frequentes#trancamento-parcial-de-matricula-justificado-tj">[2]</a> 
+                e <a href="https://www.noticias.unb.br/institucional/2371-cepe-define-novas-regras-para-trancamento-de-matriculas">[3]</a>), 
+                mas que já está contemplada em 
+                <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf">[1]</a>. 
+                Contudo, períodos trancados ainda devem constar na tabela com todas as suas células em branco ou 
+                preenchidas com $ 0 $, por causa do impacto no peso atribuído aos semestres subseqüentes.
+            </li>
+        </ul>
+    </div>
+    
+    <div id="referencias">
+        <h3>Referências</h3>
+        <ul>
+            <li>
+                <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf">[1]</a> Resolução que rege o cálculo do IRA
+            </li>
+            <li>
+                <a href="https://saa.unb.br/perguntas-frequentes#trancamento-parcial-de-matricula-justificado-tj">[2]</a> Guia sobre trancamentos (última seção)
+            </li>
+            <li>
+                <a href="https://www.noticias.unb.br/institucional/2371-cepe-define-novas-regras-para-trancamento-de-matriculas">[3]</a> Notícia sobre resolução eliminando impacto de trancamentos no IRA
+            </li>
+        </ul>
+    </div>
+
+    <footer>
+        <div class="footer-links">
+            <a href="index.html">Calculadora</a> | <a href="termos_de_uso.html">Termos de Uso</a>
+        </div>
+        <div class="footer-small">
+            &copy; 2024 –&nbsp;&nbsp;| Data da última modificação: <span id="lastModified"></span>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('lastModified').textContent = new Date(document.lastModified).toLocaleDateString();
+    </script>
+</body>
+</html>
