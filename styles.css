@@ -118,8 +118,8 @@ input::placeholder {
     background-color: #fbf1c7;
     display: flex;
     justify-content: space-around;
-    font-size: 18px;
-    color: #003366;
+    font-size: 20px;
+    color: #000000;
     font-weight: bold;
 }
 
@@ -137,9 +137,9 @@ a:hover {
 }
 
 footer {
-    margin-top: 20px;
+    margin-top: 18px;
     text-align: center;
-    font-size: 16px;
+    font-size: 18px;
 }
 
 .footer-links {
@@ -147,7 +147,7 @@ footer {
 }
 
 .footer-small {
-    font-size: 12px;
+    font-size: 14px;
     display: block;
     margin-top: 5px;
 }
