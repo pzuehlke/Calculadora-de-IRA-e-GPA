@@ -118,7 +118,7 @@ input::placeholder {
     background-color: #fbf1c7;
     display: flex;
     justify-content: space-around;
-    font-size: 20px;
+    font-size: 18px;
     color: #000000;
     font-weight: bold;
 }
@@ -128,7 +128,7 @@ input::placeholder {
 }
 
 a {
-    color: #1e90ff; /* Light blue color for links */
+    color: #1e90ff;
     text-decoration: none;
 }
 
@@ -139,7 +139,7 @@ a:hover {
 footer {
     margin-top: 18px;
     text-align: center;
-    font-size: 18px;
+    font-size: 16px;
 }
 
 .footer-links {
@@ -158,5 +158,14 @@ footer a {
 }
 
 footer a:hover {
+    text-decoration: underline;
+}
+
+.reference-text {
+    color: inherit;
+    text-decoration: none;
+}
+
+.reference-text:hover {
     text-decoration: underline;
 }

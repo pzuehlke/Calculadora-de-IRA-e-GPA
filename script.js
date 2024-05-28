@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
+    // Grabbing elements by their IDs for future use:
     const addSemesterButton = document.getElementById("addSemester");
     const removeSemesterButton = document.getElementById("removeSemester");
     const printPageButton = document.getElementById("printPage");
@@ -13,9 +14,10 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalIi = document.getElementById("total-ii");
     const totalSr = document.getElementById("total-sr");
     const totalCredits = document.getElementById("total-credits");
-    
-    let semesterCount = 0;
-    
+
+    let semesterCount = 0; // Track the number of semesters
+
+    // Mapping grade strings to numerical values:
     const gradeValues = {
         SS: 5,
         MS: 4,
@@ -25,50 +27,55 @@ document.addEventListener("DOMContentLoaded", function() {
         SR: 0
     };
 
-    // Initialize the table with 8 periods
+    // Initialize the table with 8 periods on page load:
     for (let i = 1; i <= 8; i++) {
         addSemester();
     }
 
+    // Adding event listeners to buttons:
     addSemesterButton.addEventListener("click", addSemester);
     removeSemesterButton.addEventListener("click", removeSemester);
     printPageButton.addEventListener("click", printPage);
 
     function addSemester() {
-        semesterCount++;
+        semesterCount++; // Increment semester count
 
+        // Create a new row for the semester:
         const row = document.createElement("tr");
         row.id = `semester-${semesterCount}`;
         
+        // Create and append the semester number cell:
         const semesterCell = document.createElement("td");
         semesterCell.textContent = `${semesterCount}º`;
         row.appendChild(semesterCell);
 
-        ['SS', 'MS', 'MM', 'MI', 'II', 'SR'].forEach(grade => {
-            const gradeCell = document.createElement("td");
-            const gradeInput = document.createElement("input");
-            gradeInput.type = "number";
-            gradeInput.min = 0;
-            gradeInput.max = 10;
-            gradeInput.placeholder = grade; // Set placeholder
-            gradeInput.addEventListener("input", updateIRA);
-            gradeCell.appendChild(gradeInput);
-            row.appendChild(gradeCell);
+        // Create and append cells for each grade type:
+        ['SS', 'MS', 'MM', 'MI', 'II', 'SR'].forEach(credit => {
+            const creditCell = document.createElement("td");
+            const creditInput = document.createElement("input");
+            creditInput.type = "number";
+            creditInput.min = 0;
+            creditInput.max = 99;
+            creditInput.placeholder = credit; // Set placeholder text to grade type
+            creditInput.addEventListener("input", updateIRA); // Update IRA on input change
+            creditCell.appendChild(creditInput);
+            row.appendChild(creditCell);
         });
 
+        // Create and append the total credits cell for the semester:
         const totalCreditsCell = document.createElement("td");
         totalCreditsCell.id = `total-credits-${semesterCount}`;
-        totalCreditsCell.textContent = '0'; // Pre-fill with zero
+        totalCreditsCell.textContent = '0'; // Initialize with zero
         row.appendChild(totalCreditsCell);
 
-        semesterBody.appendChild(row);
+        semesterBody.appendChild(row); // Append the new row to the table body
     }
 
     function removeSemester() {
-        if (semesterCount > 0) {
+        if (semesterCount > 0) { // Ensure there's at least one semester to remove
             const row = document.getElementById(`semester-${semesterCount}`);
             semesterBody.removeChild(row);
-            semesterCount--;
+            semesterCount--; // Decrement semester count
             updateIRA();  // Recalculate IRA after removing a period
         }
     }
@@ -78,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function() {
         let totalWeight = 0;
         let totalCreditsGPA = 0;
 
+        // Initialize sums for each grade type:
         let sumSs = 0;
         let sumMs = 0;
         let sumMm = 0;
@@ -89,20 +97,20 @@ document.addEventListener("DOMContentLoaded", function() {
         for (let i = 1; i <= semesterCount; i++) {
             const row = document.getElementById(`semester-${i}`);
             const inputs = row.querySelectorAll("input");
-            const weight = Math.min(i, 6);
+            const weight = Math.min(i, 6); // Weight is the semester number, capped at 6
 
             let semesterCredits = 0;
-            
-            inputs.forEach(input => {
-                const value = parseFloat(input.value) || 0;
-                const grade = input.placeholder;
-                const gradeValue = gradeValues[grade] || 0;
-                totalWeightedCredits += value * weight * gradeValue;
-                totalWeight += value * weight;
-                totalCreditsGPA += value * gradeValue;
-                semesterCredits += value;
 
-                // Summing up grades for total row
+            inputs.forEach(input => {
+                const value = parseFloat(input.value) || 0; // Get input value or default to 0
+                const grade = input.placeholder; // Get grade type from placeholder
+                const gradeValue = gradeValues[grade] || 0; // Get numerical value for grade
+                totalWeightedCredits += value * weight * gradeValue; // Accumulate weighted credits
+                totalWeight += value * weight; // Accumulate weight
+                totalCreditsGPA += value * gradeValue; // Accumulate total credits for GPA
+                semesterCredits += value; // Accumulate credits for the semester
+
+                // Update sums for total row:
                 switch (grade) {
                     case 'SS':
                         sumSs += value;
@@ -125,10 +133,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 }
             });
 
-            sumTotalCredits += semesterCredits;
-            document.getElementById(`total-credits-${i}`).textContent = semesterCredits;
+            sumTotalCredits += semesterCredits; // Accumulate total credits
+            document.getElementById(`total-credits-${i}`).textContent = semesterCredits; // Update semester credits display
         }
 
+        // Update totals for each grade type:
         totalSs.textContent = sumSs;
         totalMs.textContent = sumMs;
         totalMm.textContent = sumMm;
@@ -137,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function() {
         totalSr.textContent = sumSr;
         totalCredits.textContent = sumTotalCredits;
 
+        // Calculate and display IRA, GPA, and common average:
         const ira = totalWeight ? (totalWeightedCredits / totalWeight).toFixed(2) : "0.00";
         iraValue.textContent = `${ira} / 5.00`;
 
@@ -148,6 +158,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function printPage() {
-        window.print();
+        window.print(); // Print the page
     }
 });
