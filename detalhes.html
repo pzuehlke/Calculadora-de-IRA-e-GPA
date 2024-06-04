@@ -53,7 +53,7 @@
     <div id="observacoes">
         <ul>
             <li>
-                A expressão que determina o IRA é: <span id="iraFormula">
+                A expressão que determina o IRA (índice de rendimento acadêmico da UnB) é: <span id="iraFormula">
                 $$\text{IRA} = \frac{{\Large \sum}\limits_{\substack{\text{período} \\ \text{menção}}} 
                 (\text{peso do período}) \times (\text{peso da menção}) \times 
                 (\text{total de créditos com esta menção no período})}{{\Large \sum}\limits_{\substack{\text{período}}} 
@@ -82,14 +82,15 @@
                 e <a href="https://www.noticias.unb.br/institucional/2371-cepe-define-novas-regras-para-trancamento-de-matriculas" class="reference">[3]</a>), 
                 mas que já está contemplada em 
                 <a href="https://deg.unb.br/images/legislacao/resolucao_ceg_0001_2020.pdf" class="reference">[1]</a>. 
-                Contudo, períodos trancados ainda devem constar na tabela, com todas as suas células em branco ou 
-                preenchidas com $ 0 $, por causa do impacto no peso atribuído aos semestres subseqüentes.
+                Contudo, períodos trancados ainda devem constar na tabela como
+                linhas em branco, por causa do impacto deles no peso atribuído aos
+                semestres subseqüentes.
             </li>
             <li>
                 O GPA (grade point average) é a noção de média geral mais empregada em instituições de ensino americanas
                 (cf. <a href="https://en.wikipedia.org/wiki/Academic_grading_in_the_United_States" class="reference">[4]</a>). 
                 Na forma mais usual, ele varia numa escala de $ 0.0 $ a $ 4.0 $ e todos os períodos têm o mesmo peso. Portanto,
-                usando os mesmos pesos para as menções que acima:
+                usando os mesmos equivalentes numéricos para as menções que acima:
                 <span id="gpaFormula">
                 $$\text{GPA} = \frac{4}{5} \times \frac{{\Large \sum}\limits_{\text{menção}} 
                 (\text{peso da menção}) \times (\text{total de créditos com esta menção na graduação})}{
@@ -97,8 +98,8 @@
                 </span>
             </li>
             <li>
-                A "média" calculada aqui é simplesmente o GPA numa escala de $ 0.0 $ a $ 10.0 $. Assim, ela é dada por:
-                $$ \text{média comum} = \frac{5}{2} \times \text{GPA} $$
+                A "média" calculada aqui é simplesmente o GPA numa escala de zero a dez:
+                $$ \text{Média} = \frac{5}{2} \times \text{GPA} $$
             </li>
         </ul>
     </div>

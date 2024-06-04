@@ -48,7 +48,13 @@
     </script>
 </head>
 <body>
-    <h1>Calculadora de IRA e GPA para a UnB (não-oficial)</h1>
+    <h1>Calculadora de IRA e GPA para a UnB</h1>
+
+    <div id="controls">
+        <button id="addSemester"><span class="prefix green">$ \mathbf{+} $</span>Adicionar Período</button>
+        <button id="removeSemester"><span class="prefix blue">$ \mathbf{-} $</span>Remover Período</button>
+        <button id="printPage"><img src="pdf_logo.png" alt="PDF Logo" class="pdf-logo"> $\ $ Salvar como PDF</button>
+    </div>
 
     <table id="semesterTable">
         <thead>
@@ -80,11 +86,6 @@
         </tfoot>
     </table>
 
-    <div id="controls">
-        <button id="addSemester"><span class="prefix green">$ \mathbf{+} $</span>Adicionar Período</button>
-        <button id="removeSemester"><span class="prefix blue">$ \mathbf{-} $</span>Remover Período</button>
-        <button id="printPage"><img src="pdf_logo.png" alt="PDF Logo" class="pdf-logo">Salvar como PDF ou Imprimir</button>
-    </div>
 
     <h3>Estatísticas</h3>
     <div id="statistics">
@@ -95,11 +96,11 @@
 
     <h3>Instruções</h3>
     <ul>
-        <li><em>Para cada período, insira o número total de créditos concluídos com o tipo de menção indicado.</em></li>
-        <li>Caso não tenha obtido uma determinada menção num período, deixe a célula correspondente em branco.</li>
+        <li><em>Para cada período, insira o número total de créditos concluídos com a menção indicada.</em></li>
         <li>Menções distintas das indicadas acima (como CC, AP ou TR) devem ser ignoradas.</li>
         <li>Linhas correspondentes a períodos trancados devem ser deixadas em branco.</li>
-        <li>Se preferir, utilize <code>Tab</code> e <code>Shift+Tab</code> para navegar entre as células usando apenas o teclado.</li>
+        <li>Somente as informações contidas no histórico escolar da(o) estudante têm
+        validade.</li>
     </ul>
     
     <footer>

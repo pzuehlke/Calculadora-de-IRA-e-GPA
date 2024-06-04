@@ -1,5 +1,5 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family: Merriweather, Georgia, serif;
 }
 
 h1, h2, h3 {
@@ -30,6 +30,8 @@ h1 {
     border: none;
     background-color: #f0f0f0;
     transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
 }
 
 #controls button:hover {
@@ -55,6 +57,7 @@ h1 {
     height: 20px;
     vertical-align: middle;
     margin-right: 5px;
+    margin-bottom: 0px;
 }
 
 table {
